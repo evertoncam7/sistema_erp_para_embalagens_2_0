@@ -379,8 +379,8 @@ class EmbQuadrada extends Embalagem{
 
                 ctx2.fillText(`${obj.tocos[index]}`, (index == 0 ? 20 : porcent[index - 1]  + 30 ) , 40);
 
-                ctx2.moveTo(left+porcent[index], 10);
-                ctx2.lineTo(left+porcent[index], 70);
+                ctx2.moveTo(10+porcent[index], 10);
+                ctx2.lineTo(10+porcent[index], 70);
 
             }
 
