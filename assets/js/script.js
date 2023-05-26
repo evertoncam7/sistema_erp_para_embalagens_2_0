@@ -93,11 +93,26 @@ class Embalagem{
         return 'Implementar este método nas classes filhas.';
     }
 
+    _somaArr(arr){
+
+        let s = 0;
+
+        for (let index = 0; index < arr.length; index++) {
+            
+            s += this._tocos[arr[index]];
+            
+        }
+
+        // console.log(s);
+        return s;
+
+    }
+
      // Neste método recebo uma array de indices de combinações pelo parâmetro, faremos um for para usar esses indices pois o array vem com valores dinâmicos.
 
     _createObjectComb(arrComb){
         
-        const obj = {id:this._maxDivision, tocos:[] ,medida:this._medida, quantFemea:0, quantMacho:0 ,diff:0};
+        const obj = {id:this._maxDivision, tocos:[] ,medida:this._medida, quantFemea:0, quantMacho:0 ,diff:0, sobra:0};
 
         // console.log(arrComb)
 
@@ -124,6 +139,7 @@ class Embalagem{
                 }
 
                 obj.message = this._message(null, "A diferença entre macho e fêmea neste corte é de "+obj.diff+".");
+                obj.sobra = (1.40 - this._somaArr(arrComb));
                 
             }
             
@@ -154,7 +170,7 @@ class Embalagem{
                 const com = [index, index2];
                 const f = this._createObjectComb(com);
                 
-                if (f) {
+                if (f && this._somaArr(com) <= 1.40) {
                     this._listCombinacoes.push(f);
                 }
                 
@@ -189,7 +205,7 @@ class Embalagem{
                             const com = [index, index2, index3, index4, index5];
                             const f = this._createObjectComb(com);
                             
-                            if (f) {
+                            if (f && this._somaArr(com) <= 1.40) {
                                 this._listCombinacoes.push(f);
                             }
                             
@@ -314,6 +330,14 @@ class EmbQuadrada extends Embalagem{
         ctx1.lineTo(left, top+top+height+(this._comprimentoMacho * escala));
         ctx1.lineTo(left, top+top+height);
 
+        ctx1.font = "11px Arial";
+
+        ctx1.fillText(`Largura da fêmea: ${this._tocos[0]}`, 100, top+10);
+        ctx1.fillText(`Comprimento da fêmea: ${this._tocos[2]}`, 100, top+30);
+
+        ctx1.fillText(`Largura da macho: ${this._tocos[1]}`, 100, height+top+30);
+        ctx1.fillText(`Comprimento da macho: ${this._tocos[3]}`, 100, height+top+50);
+
         ctx1.stroke();
 
     }
@@ -340,6 +364,8 @@ class EmbQuadrada extends Embalagem{
         ctx2.lineTo(10, 70);
         ctx2.lineTo(10, 10);
 
+        ctx2.font = "11px Arial";
+
         if (indice > -1 && indice != null) {
 
             const obj = this._listCombinacoes[indice];
@@ -351,14 +377,24 @@ class EmbQuadrada extends Embalagem{
 
                 porcent.push(( !porcent.length ? (telaWidth - 10)/divisor : (((telaWidth - 10)/divisor) + porcent[index - 1])));
 
-                ctx2.moveTo(porcent[index], 10);
-                ctx2.lineTo(porcent[index], 70);
-                
+                ctx2.fillText(`${obj.tocos[index]}`, (index == 0 ? 20 : porcent[index - 1]  + 30 ) , 40);
+
+                ctx2.moveTo(left+porcent[index], 10);
+                ctx2.lineTo(left+porcent[index], 70);
+
             }
 
-            console.log(porcent);
+            ctx2.fillText(`Medida: ${this._medida[0]} x ${this._medida[1]} x ${this._medida[2]}`, 10, 90);
+            ctx2.fillText(`Medida da fêmea: ${this._tocos[0]} x ${this._tocos[2]}`, 10, 105);
 
+            ctx2.fillText(`Medida do macho: ${this._tocos[1]} x ${this._tocos[3]}`, 10, 120);
 
+            ctx2.fillText(`Quantidade total de fêmea: ${this._listCombinacoes[0].quantFemea}`, 10, 135);
+            ctx2.fillText(`Quantidade total de macho: ${this._listCombinacoes[0].quantMacho}`, 10, 150);
+
+            ctx2.fillText(`Diferença de quantidade entre macho e fêmea: ${this._listCombinacoes[0].diff}`, 10, 165);
+
+            ctx2.fillText(`Sobra de toco: ${this._listCombinacoes[0].sobra}`, 10, 180);
 
         }
 
@@ -401,6 +437,8 @@ if (chave) {
     
         embQuadrada1._render();
         embQuadrada1._renderBobina(0);
+
+        console.log(embQuadrada1)
 
         chave = false;
         
