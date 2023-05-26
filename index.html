@@ -11,6 +11,7 @@
             padding: 0px;
             margin: 0px;
             box-sizing: border-box;
+            list-style: none;
         }
 
         .container{
@@ -19,6 +20,54 @@
             height: 100vh;
             /* background: red; */
 
+        }
+
+        .header-app{
+            width: 100%;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .header-app-p1{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background: #07080a;
+            border-radius: 0px 0px 10px 10px;
+        }
+
+        .header-app-p1 ul{
+            
+            padding: 0px 20px;
+            display: flex;
+            
+        }
+
+        .header-app-p1 ul li{
+            position: relative;
+            top: 27px;
+            margin-left: 10px;
+            background: #9d4729;
+            padding: 7px 20px;
+            font-weight: bold;
+            border-radius: 3px;
+            color: #fff;
+            border: 2px solid #fff;
+            
+        }
+
+        .header-app-p1 ul li:nth-child(1){
+            
+        }
+
+        .header-app-p2{
+            width: 100%;
+            height: 20px;
+            /* background: green */
         }
 
         #canvas1{
@@ -39,8 +88,9 @@
             left: 0px;
             width: 100%;
             height: 40px;
-            background: greenyellow;
+            background: #9d4729;
             display: flex;
+            
         }
 
         .controll button{
@@ -68,6 +118,18 @@
 <body>
 
     <div class="container">
+        
+        <header class="header-app">
+            <div class="header-app-p1">
+                <nav>
+                    <ul>
+                        <li>Corte</li>
+                        <li>Custos</li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-app-p2"></div>
+        </header>
 
         <canvas id="canvas1" height="270">
 

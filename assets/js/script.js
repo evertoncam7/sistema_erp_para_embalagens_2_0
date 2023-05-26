@@ -335,8 +335,8 @@ class EmbQuadrada extends Embalagem{
         ctx1.fillText(`Largura da fêmea: ${this._tocos[0]}`, 100, top+10);
         ctx1.fillText(`Comprimento da fêmea: ${this._tocos[2]}`, 100, top+30);
 
-        ctx1.fillText(`Largura da macho: ${this._tocos[1]}`, 100, height+top+30);
-        ctx1.fillText(`Comprimento da macho: ${this._tocos[3]}`, 100, height+top+50);
+        ctx1.fillText(`Largura do macho: ${this._tocos[1]}`, 100, height+top+30);
+        ctx1.fillText(`Comprimento do macho: ${this._tocos[3]}`, 100, height+top+50);
 
         ctx1.stroke();
 
@@ -379,8 +379,9 @@ class EmbQuadrada extends Embalagem{
 
                 ctx2.fillText(`${obj.tocos[index]}`, (index == 0 ? 20 : porcent[index - 1]  + 30 ) , 40);
 
-                ctx2.moveTo(left+porcent[index], 10);
-                ctx2.lineTo(left+porcent[index], 70);
+                ctx2.moveTo(10+porcent[index], 10);
+                ctx2.lineTo(10
+                    +porcent[index], 70);
 
             }
 
@@ -389,22 +390,22 @@ class EmbQuadrada extends Embalagem{
 
             ctx2.fillText(`Medida do macho: ${this._tocos[1]} x ${this._tocos[3]}`, 10, 120);
 
-            ctx2.fillText(`Quantidade total de fêmea: ${this._listCombinacoes[0].quantFemea}`, 10, 135);
-            ctx2.fillText(`Quantidade total de macho: ${this._listCombinacoes[0].quantMacho}`, 10, 150);
+            ctx2.fillText(`Quantidade total de fêmea: ${Math.floor(this._listCombinacoes[0].quantFemea)}`, 10, 135);
+            ctx2.fillText(`Quantidade total de macho: ${Math.floor(this._listCombinacoes[0].quantMacho)}`, 10, 150);
 
-            ctx2.fillText(`Diferença de quantidade entre macho e fêmea: ${this._listCombinacoes[0].diff}`, 10, 165);
+            ctx2.fillText(`Diferença de quantidade entre macho e fêmea: ${Math.floor(this._listCombinacoes[0].diff)}`, 10, 165);
 
-            ctx2.fillText(`Sobra de toco: ${this._listCombinacoes[0].sobra}`, 10, 180);
+            ctx2.fillText(`Sobra de toco: ${this._listCombinacoes[0].sobra.toFixed(2)}`, 10, 180);
+
+            ctx2.fillText(`Medida do zíper: ${this._tocos[2]}`, 10, 195);
+
+            ctx2.fillText(`Espessura do plástico: 0.008`, 10, 210);
 
         }
-
-
 
         ctx2.stroke();
 
     }
-
-
 
 }
 
@@ -445,6 +446,9 @@ if (chave) {
     })
     
 }
+
+
+// Este software otimiza o processo do corte da empresa, fazendo com que ela ganhe mais agilidade pois ele faz toda a rotina de contas e também aumenta o aproveitamento da matéria prima resultando em menos perca de material, fazendo este processo de otimização reflete no preço final do produto levando em conta a diminuição de percas e tempo gasto fazendo as contas que o app já faz.
 
 
 
